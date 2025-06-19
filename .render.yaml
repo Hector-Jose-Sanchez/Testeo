@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: productos-crud
+    env: docker
+    region: oregon
+    plan: free
+    branch: main
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        value: base64:HK2WF91K3fSE2g4OiBLKqmBQMPiuw765Kf25Xy9S7Hg=
+      - key: APP_NAME
+        value: productos-crud
+      - key: APP_DEBUG
+        value: false
+      - key: APP_URL
+        value: https://productos-crud.onrender.com
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d1a7ftripnbc739rl7m0-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: productos_crud_db
+      - key: DB_USERNAME
+        value: productos_crud_db_user
+      - key: DB_PASSWORD
+        value: y9SRYG6oGdQNGmt3eCvHcK5SFAQUFpbf
+      - key: SESSION_DRIVER
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: VITE_APP_NAME
+        value: productos-crud
