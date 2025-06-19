@@ -33,5 +33,9 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
     && npm install \
     && npm run build
 
+# Ejecutar migraciones automáticamente
+RUN php artisan migrate --force
+
 # Exponer puerto 80
 EXPOSE 80
+
