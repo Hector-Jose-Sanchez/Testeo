@@ -15,15 +15,16 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copiar archivos
-COPY . /var/www/html
+# Copiar todo el proyecto a /var/www
+COPY . /var/www
+WORKDIR /var/www
 
-# Configuración Apache
-RUN chown -R www-data:www-data /var/www/html \
+# Apuntar Apache al directorio /public de Laravel
+RUN rm -rf /var/www/html && ln -s /var/www/public /var/www/html
+
+# Habilitar mod_rewrite para URLs amigables
+RUN chown -R www-data:www-data /var/www \
     && a2enmod rewrite
-
-# Directorio de trabajo
-WORKDIR /var/www/html
 
 # Instalar dependencias PHP y JS
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader \
